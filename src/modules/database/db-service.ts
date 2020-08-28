@@ -12,6 +12,14 @@ export class DbService {
     });
   }
 
+  getFirstRow (data: Array<any>) {
+    if (data.length) {
+      return data[0];
+    }
+    
+    throw new Error('TODO: 404')
+  }
+
   get connection () {
     return this.conn;
   } 

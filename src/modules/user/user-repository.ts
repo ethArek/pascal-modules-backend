@@ -14,12 +14,15 @@ export class UserRepository {
   }
 
   async get(id: string) {
+    return this.dbService.connection
+      .select('*')
+      .from('users')
+      .where('id', id)
+      .then(this.dbService.getFirstRow);
   }
 
   async getList(query: any) {
-    return this
-      .dbService
-      .connection
+    return this.dbService.connection
       .select('*')
       .from('users');
   }
