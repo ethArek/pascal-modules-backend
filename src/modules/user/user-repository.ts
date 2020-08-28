@@ -7,10 +7,15 @@ export class UserRepository {
   ) {}
 
   async create(data: Omit<User, "id">) {
-    // return this.dbService.connection
+    return this.dbService.connection('users')
+      .insert(data)
+      .returning('*');
   }
 
   async update(id: string, data: Pick<User, "username">) {
+    return this.dbService.connection('users')
+      .update(data)
+      .where('id', id);
   }
 
   async get(id: string) {
