@@ -1,8 +1,13 @@
 import { AppDependencies } from "src/app-dependencies";
-import Express from 'express';
+import express from 'express';
 
-export async function getUsersList(req: Express.Request, res: Express.Response, deps: AppDependencies) {
-  res.json({
-    list: await deps.userService.getList()
-  })
+export async function getUsersList(req: express.Request, res: express.Response, next: express.NextFunction, deps: AppDependencies) {
+  try {
+    const list = await deps.userService.getList();
+    res.json({
+      list
+    });
+  } catch (err) {
+    next(err);
+  }
 }
