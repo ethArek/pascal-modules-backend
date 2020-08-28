@@ -1,7 +1,10 @@
 import { PascalModule } from "src/types/pascal-module";
+import { DbService } from "../database/db-service";
 
 export class PascalModuleRepository {
-  constructor() {
+  constructor(
+    private dbService: DbService
+  ) {
   }
 
   async create(data: Omit<PascalModule, "id">) {

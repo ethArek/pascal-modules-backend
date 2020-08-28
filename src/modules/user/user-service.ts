@@ -20,5 +20,6 @@ export class UserService {
   }
 
   getList() {
+    return this.userRepository.getList({});
   }
 }
